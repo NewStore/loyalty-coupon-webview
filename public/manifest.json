@@ -1,0 +1,8 @@
+{
+  "short_name": "Loyalty Discount",
+  "name": "Loyalty Discount Coupon Webview",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

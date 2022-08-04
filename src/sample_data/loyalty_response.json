@@ -1,0 +1,49 @@
+{
+   "membership_id":"368202",
+   "loyalty_points":"1200",
+   "loyalty_tier":"Gold",
+   "first_name":"Samir",
+   "last_name":"Tannoury",
+   "middle_name":null,
+   "email":"Samir.Tannoury@monkeySports.com",
+   "phone":"000-000-0000",
+   "gender":"male",
+   "birthdate":null,
+   "language":"en-US",
+   "address":[
+      {
+         "address_line_1":"123 main st",
+         "address_line_2":"apt 2",
+         "country":"usa",
+         "state":"massachusetts",
+         "town":"boston",
+         "zipcode":"01234"
+      }
+   ],
+   "coupons":[
+      {
+         "label":"$10 off order",
+         "product":"null",
+         "code":"DISC-10-USD"
+      },
+      {
+         "label":"$25 off order",
+         "product":null,
+         "code":"DISC-25-USD"
+      },
+      {
+         "label":"$50 off order",
+         "product":"null",
+         "code":"DISC-50-USD"
+      },
+      {
+         "label":"20% off item 1000602",
+         "product":"1000602",
+         "code":"ITEM-DISC-20-1000602"
+      }
+   ],
+   "comments":[
+      "Everything should go null if unset",
+      "values/amounts should be strings, zero value is '0'"
+   ]
+}
