@@ -2,6 +2,9 @@ Newstore Associate App Loyalty Coupon Webview Template
 
 In this repo is a WebView template used in the NewStore Associate App. The WebView is a screen that can be navigated to during checkout to view fetched customer loyalty details, as well as apply fetched coupons to the cart. 
 
+Demo:
+https://user-images.githubusercontent.com/16912353/183439836-74de9d9d-2c80-497e-998d-c23671c49216.mp4
+
 Install software:
 - Node.js - `https://nodejs.org/en/`
 - create-react-app - run `npx create-react-app my-app`
