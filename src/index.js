@@ -4,11 +4,11 @@ import { ThemeProvider } from 'styled-components';
 import './index.css';
 import App from './App';
 //import reportWebVitals from './reportWebVitals';
-//import { webviewData, loyaltyData } from './sample_data'
+import { webviewData, loyaltyData } from './sample_data'
 
 
-//const theme = webviewData.theme;
-const theme = window?.NEWSTORE?.theme;
+const theme = webviewData.theme;
+//const theme = window?.NEWSTORE?.theme;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

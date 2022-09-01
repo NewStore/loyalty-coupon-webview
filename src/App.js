@@ -5,7 +5,7 @@ import SubmitButton from './components/SubmitButton';
 import {loyaltyUrl} from './constants';
 //loyaltyData can be used for local testing if the lambda isn't set up
 // webViewData can be used for testing in local computer's web browser - which doesn't receive window.NEWSTORE
-//import { webviewData, loyaltyData } from './sample_data'
+import { webviewData, loyaltyData } from './sample_data'
 
 const WebViewContainer = styled.div`
   backgroundColor: ${props => props.theme.color.gray100};
@@ -75,22 +75,32 @@ function App() {
   const [response, setResponse] = useState(null)
   const [selectedCoupons, setSelectedCoupons] = useState([])
 
-  const { cart } = window?.NEWSTORE?.contextProps;
+  /* const { cart } = window?.NEWSTORE?.contextProps;
   const token = window?.NEWSTORE?.securityToken;
   const theme = window?.NEWSTORE?.theme;
-  const dimensions = window?.NEWSTORE?.dimensions;
+  const dimensions = window?.NEWSTORE?.dimensions; */
+
+  console.log("webviewData: ", webviewData.theme)
+
+
+  const { cart } = webviewData.contextProps;
+  const token = webviewData.securityToken;
+  const theme = webviewData.theme;
+  const dimensions = webviewData.dimensions;
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(loyaltyUrl, {
+      const res = await fetch("http://www.google.com")
+      /* const res = await fetch(loyaltyUrl, {
         method: "POST",
         body: {
           email: cart.customerEmail,
           items: cart.items,
           token: token,
         }
-      })
-      return res.json()
+      }) */
+      //return res.json()
+      return loyaltyData
     }
 
     fetchData()
@@ -110,7 +120,7 @@ function App() {
 
   const couponsUrlParams = selectedCoupons.map((item, index) => `coupons[]=${item.code}${selectedCoupons.length - 1 === index ? "" : "&"}`).join("")
 
-  const discountDeeplink = `com.newstore.associate-one://cart.more.loyaltyProgram/applyCoupons?${couponsUrlParams}&cartId=${window.NEWSTORE.contextProps.cart.cartId}&token=${window.NEWSTORE.securityToken}`
+  const discountDeeplink = `com.newstore.associate-one://cart.more.loyaltyProgram/applyCoupons?${couponsUrlParams}&cartId=${webviewData.contextProps.cart.cartId}&token=${webviewData.securityToken}`
 
   const handleSubmit = () => {
     window.open(discountDeeplink)
