@@ -16,11 +16,27 @@ Local development:
 - Example responses are provided for local development/testing in `src/sample_data`
 
 Setup for live use:
-- set up a lambda to middleman the loyalty provider and WebView, see `src/sample_data/loyalty_response.json` for an example
-- modify `constants.js` variable `loyaltyUrl` to point to your lambda
-- run `npm run build`
-- to bundle all css and js files into `index.html` run `npx gulp`
-- host the resulting `index.html` from `/build` somewhere of your choosing
-- set tenant config value `cart.more.loyaltyProgram` per the linked docs
+- run `npm i` to install dependencies
+- set up a lambda to middleman the loyalty provider and WebView, see `src/sample_data/loyalty_response.json` for an example. The lambda should be an HTTPS endpoint
+- modify `src/constants.js` variable `loyaltyUrl` to point to your lambda
+- run `npm run build`, a `build` directory will be created resembling the following structure:
+   ```/build
+        manifest.json
+        asset-manifest.json
+        index.html
+        /static
+            /js
+                main.[hash].js
+                main.[hash].js.LICENSE.txt
+            /css
+                main.[hash].css
+    ```
+- feel free to delete `asset-manifest.json` and `main.[hash].js.LICENSE.txt`, they're unnecessary
+- host the rest of the files on s3 in the same directory structure to preserve file paths
+- set tenant config value `cart.more.loyaltyProgram` to be the s3 URL for `index.html` per the linked docs
 
 Docs: https://docs.newstore.net/docs/development/configuration/config-aa-loyalty-rewards.html#config-aa-loyalty-rewards
+
+Troubleshooting:
+- `rm -rf node_modules`
+- `npm i`
