@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import CouponField from './components/CouponField';
 import SubmitButton from './components/SubmitButton';
 import {loyaltyUrl} from './constants';
+import axios from 'axios';
 //loyaltyData can be used for local testing if the lambda isn't set up
 // webViewData can be used for testing in local computer's web browser - which doesn't receive window.NEWSTORE
 //import { webviewData, loyaltyData } from './sample_data'
@@ -80,17 +81,22 @@ function App() {
   const theme = window?.NEWSTORE?.theme;
   const dimensions = window?.NEWSTORE?.dimensions;
 
+  const reqBody = {
+    email: cart.customerEmail,
+    items: cart.items,
+    token: token,
+  }
+
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(loyaltyUrl, {
-        method: "POST",
-        body: {
-          email: cart.customerEmail,
-          items: cart.items,
-          token: token,
+      const res = await axios.post(loyaltyUrl, reqBody, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
         }
       })
-      return res.json()
+
+      return res.data
     }
 
     fetchData()
@@ -110,7 +116,7 @@ function App() {
 
   const couponsUrlParams = selectedCoupons.map((item, index) => `coupons[]=${item.code}${selectedCoupons.length - 1 === index ? "" : "&"}`).join("")
 
-  const discountDeeplink = `com.newstore.associate-one://cart.more.loyaltyProgram/applyCoupons?${couponsUrlParams}&cartId=${window.NEWSTORE.contextProps.cart.cartId}&token=${window.NEWSTORE.securityToken}`
+  const discountDeeplink = `com.newstore.associate-one://cart.more.loyaltyProgram/applyCoupons?${couponsUrlParams}&cartId=${window?.NEWSTORE?.contextProps.cart.cartId}&token=${window?.NEWSTORE?.securityToken}`
 
   const handleSubmit = () => {
     window.open(discountDeeplink)
