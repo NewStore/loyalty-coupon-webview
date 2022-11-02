@@ -38,6 +38,7 @@ function CouponField(props) {
         <CouponFieldContainer>
             <div>
                 <FieldTitle>Coupon</FieldTitle>
+                <FieldValue>{data.label}</FieldValue>
                 <FieldValue>{data.code}</FieldValue>
                 <Button onClick={() => onSelect(data)}>Use Coupon</Button>
             </div>

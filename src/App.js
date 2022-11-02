@@ -25,6 +25,7 @@ const HeaderContainer = styled.div`
   background-color: ${props => props.theme.color.white};
   position: fixed;
   width: 100%;
+  z-index: 1;
 `
 
 const HeaderSkirt = styled.div`
@@ -42,9 +43,9 @@ const PageTitle = styled.p`
 
 const ContentContainer = styled.div`
   background-color: ${props => props.theme.color.gray100};
-  height: ${props => props.dimensions.height}px;
+  min-height: ${props => props.dimensions.height}px;
   padding-top: ${props => props.theme.spacing64};
-  padding-bottom: ${props => props.theme.spacing64};
+  padding-bottom: 80px;
   text-align: left;
 `
 
