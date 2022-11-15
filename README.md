@@ -35,6 +35,20 @@ Setup for live use:
 - host the rest of the files on s3 in the same directory structure to preserve file paths
 - set tenant config value `cart.more.loyaltyProgram` to be the s3 URL for `index.html` per the linked docs
 
+Notes on hosting the webview static files and loyalty adapter lambda:
+- CORS needs to be configured properly for the hosted static files. Video on how to enable CORS in AWS - https://www.youtube.com/watch?v=wGDiOkqtUWA
+- The return value from the loyalty adapter lambda needs to be in this format -
+    ```return {
+        'statusCode': 200,
+        'headers': {
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+        },
+        'body': json.dumps(response)
+    }
+    ```
+
 Docs: https://docs.newstore.net/docs/development/configuration/config-aa-loyalty-rewards.html#config-aa-loyalty-rewards
 
 Troubleshooting:
